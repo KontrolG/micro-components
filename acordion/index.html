@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Accordion</title>
+  <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    body {
+      background: rgb(247, 247, 247);
+      font-family: Lato, sans-serif;
+      font-size: 22px;
+    }
+
+    header, section {
+      margin-left: 15%;
+      width: 70%;
+    }
+
+    header {
+      text-align: center;
+      padding: 5% 0%;
+    }
+
+    section {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 5px 1px #ddd;
+    }
+    article {
+      background: #fff;
+    }
+
+    article:first-child .header {
+      border-top: 1px solid #ddd;
+    }
+
+    .header, .body.open {
+      position: relative;
+      padding: 1% 2%;
+      border: 1px solid #ddd;
+      border-top: none;
+      transition: all 1s, padding-left 0s, padding-right 0s, border-color 0s;
+    }
+
+    h2, i {
+      display: inline-block;
+    }
+
+    i {
+      font-size: 150%;
+      position: absolute;
+      right: 2%;
+      font-style: normal;
+    }
+
+    .body.open {
+      height: auto;
+      animation: open 1s;
+    }
+
+    @keyframes open {
+      0% {
+        padding: 0% 0%;
+        height: 0px;
+      }
+      /* 50% {
+        height: 150px;
+      } */
+      100% {
+        padding: 1% 2%;
+        height: fit-content;
+      }
+    }
+
+    .body {
+      padding: 0%;
+      height: 0px;
+      overflow: hidden;
+      border-color: none;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Preguntas frecuentes</h1>
+  </header>
+
+  <section class="accordion">
+    <article data-id="1">
+      <div class="header">
+        <h2>¿Que dias es hoy?</h2>
+        <i>+</i>
+      </div>
+      <div class="body">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint iste quas vitae libero quos at architecto provident ipsa placeat modi quod totam impedit nam, dolorum possimus, in eius eum inventore velit ex minus. Reiciendis maiores nobis debitis nihil quam rerum?
+      </div>
+    </article>
+    <article data-id="2">
+      <div class="header">
+        <h2>¿Que año es el actual?</h2>
+        <i>+</i>
+      </div>
+      <div class="body">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint iste quas vitae libero quos at architecto provident
+        ipsa placeat modi quod totam impedit nam, dolorum possimus, in eius eum inventore velit ex minus. Reiciendis maiores
+        nobis debitis nihil quam rerum?
+      </div>
+    </article>
+  </section>
+
+  <script>
+    document.querySelector(".accordion").addEventListener("click", e => {
+      if (e.target.matches("i")) {
+        const ID = e.target.closest("article").dataset.id;
+        const body = document.querySelector(`article[data-id="${ID}"] .body`);
+        body.classList.toggle("open");
+      }
+    })
+  </script>
+</body>
+</html>
